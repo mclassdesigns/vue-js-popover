@@ -191,8 +191,9 @@ module.exports = Component.exports
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__bus__ = __webpack_require__(0);
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
 var pointerSize = 6;
@@ -202,7 +203,6 @@ var directions = {
   top: [0, 1],
   bottom: [0, -1]
 };
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Popover',
   render: function render(createElement) {
@@ -267,20 +267,19 @@ var directions = {
     __WEBPACK_IMPORTED_MODULE_0__bus__["a" /* events */].$off(this.showEventName, this.showEventListener);
     __WEBPACK_IMPORTED_MODULE_0__bus__["a" /* events */].$off(this.hideEventName, this.hideEventListener);
   },
-
   computed: {
     showEventName: function showEventName() {
-      return 'show:' + this.event;
+      return "show:".concat(this.event);
     },
     hideEventName: function hideEventName() {
-      return 'hide:' + this.event;
+      return "hide:".concat(this.event);
     },
     className: function className() {
       return ['vue-popover', this.pointer && this.positionClass];
     },
     style: function style() {
-      return _extends({
-        width: this.width + 'px'
+      return _objectSpread({
+        width: "".concat(this.width, "px")
       }, this.position);
     }
   },
@@ -298,11 +297,9 @@ var directions = {
             name = event.name,
             position = event.position;
 
-
         if (name === _this.name) {
           var direction = directions[position];
-
-          _this.positionClass = 'dropdown-position-' + position;
+          _this.positionClass = "dropdown-position-".concat(position);
           _this.visible = true;
 
           _this.$nextTick(function () {
@@ -312,8 +309,8 @@ var directions = {
               var position = _this.getDropdownPosition(target, _this.$refs.dropdown, direction);
 
               _this.position = {
-                left: position.left + 'px',
-                top: position.top + 'px'
+                left: "".concat(position.left, "px"),
+                top: "".concat(position.top, "px")
               };
             });
           });
@@ -329,18 +326,13 @@ var directions = {
     getDropdownPosition: function getDropdownPosition(target, dropdown, direction) {
       var trRect = target.getBoundingClientRect();
       var ddRect = dropdown.getBoundingClientRect();
-
       var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
       var scrollLeft = window.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft;
-
       var offsetLeft = trRect.left + scrollLeft;
       var offsetTop = trRect.top + scrollTop;
-
       var shiftY = 0.5 * (ddRect.height + trRect.height);
-
       var centerX = offsetLeft - 0.5 * (ddRect.width - trRect.width);
       var centerY = offsetTop + trRect.height - shiftY;
-
       var x = direction[0] * 0.5 * (ddRect.width + trRect.width);
       var y = direction[1] * shiftY;
 
@@ -363,8 +355,6 @@ var directions = {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Tooltip',
   props: {
@@ -399,10 +389,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Tooltip_vue__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Tooltip_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Tooltip_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__bus__ = __webpack_require__(0);
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 
 
@@ -411,25 +402,33 @@ var defaultPosition = 'bottom';
 
 var prepareBinding = function prepareBinding(_ref) {
   var _ref$arg = _ref.arg,
-      arg = _ref$arg === undefined ? '' : _ref$arg,
+      arg = _ref$arg === void 0 ? '' : _ref$arg,
       _ref$modifiers = _ref.modifiers,
-      modifiers = _ref$modifiers === undefined ? {} : _ref$modifiers,
+      modifiers = _ref$modifiers === void 0 ? {} : _ref$modifiers,
       _ref$value = _ref.value,
-      value = _ref$value === undefined ? {} : _ref$value;
-
+      value = _ref$value === void 0 ? {} : _ref$value;
   var mods = Object.keys(modifiers);
-  var name = (typeof value === 'undefined' ? 'undefined' : _typeof(value)) === 'object' && value.name ? value.name : arg;
+  var name = _typeof(value) === 'object' && value.name ? value.name : arg;
   var position = mods[0] || value.position || defaultPosition;
-
-  return { name: name, position: position, value: value };
+  return {
+    name: name,
+    position: position,
+    value: value
+  };
 };
 
 var addClickEventListener = function addClickEventListener(target, params) {
   var click = function click(srcEvent) {
-    __WEBPACK_IMPORTED_MODULE_2__bus__["a" /* events */].$emit('show:click', _extends({}, params, { target: target, srcEvent: srcEvent }));
+    __WEBPACK_IMPORTED_MODULE_2__bus__["a" /* events */].$emit('show:click', _objectSpread({}, params, {
+      target: target,
+      srcEvent: srcEvent
+    }));
 
     var handler = function handler(srcEvent) {
-      __WEBPACK_IMPORTED_MODULE_2__bus__["a" /* events */].$emit('hide:click', _extends({}, params, { target: target, srcEvent: srcEvent }));
+      __WEBPACK_IMPORTED_MODULE_2__bus__["a" /* events */].$emit('hide:click', _objectSpread({}, params, {
+        target: target,
+        srcEvent: srcEvent
+      }));
       document.removeEventListener('click', handler);
     };
 
@@ -446,11 +445,17 @@ var addClickEventListener = function addClickEventListener(target, params) {
 
 var addHoverEventListener = function addHoverEventListener(target, params) {
   var mouseenter = function mouseenter(srcEvent) {
-    __WEBPACK_IMPORTED_MODULE_2__bus__["a" /* events */].$emit('show:hover', _extends({}, params, { target: target, srcEvent: srcEvent }));
+    __WEBPACK_IMPORTED_MODULE_2__bus__["a" /* events */].$emit('show:hover', _objectSpread({}, params, {
+      target: target,
+      srcEvent: srcEvent
+    }));
   };
 
   var mouseleave = function mouseleave(srcEvent) {
-    __WEBPACK_IMPORTED_MODULE_2__bus__["a" /* events */].$emit('hide:hover', _extends({}, params, { target: target, srcEvent: srcEvent }));
+    __WEBPACK_IMPORTED_MODULE_2__bus__["a" /* events */].$emit('hide:hover', _objectSpread({}, params, {
+      target: target,
+      srcEvent: srcEvent
+    }));
   };
 
   target.addEventListener('mouseenter', mouseenter);
@@ -465,17 +470,15 @@ var addHoverEventListener = function addHoverEventListener(target, params) {
 /* harmony default export */ __webpack_exports__["default"] = ({
   install: function install(Vue) {
     var params = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-
     document.addEventListener('resize', function (event) {
-      __WEBPACK_IMPORTED_MODULE_2__bus__["a" /* events */].$emit('hide', { srcEvent: event });
+      __WEBPACK_IMPORTED_MODULE_2__bus__["a" /* events */].$emit('hide', {
+        srcEvent: event
+      });
     });
-
     Vue.component('Popover', __WEBPACK_IMPORTED_MODULE_0__Popover_vue___default.a);
-
     Vue.directive('popover', {
       bind: function bind(target, binding) {
         var params = prepareBinding(binding);
-
         addClickEventListener(target, params);
         addHoverEventListener(target, params);
       },
@@ -489,6 +492,7 @@ var addHoverEventListener = function addHoverEventListener(target, params) {
       if (params.debug) {
         console.log('vue-js-popover | tooltip active');
       }
+
       Vue.component('Tooltip', __WEBPACK_IMPORTED_MODULE_1__Tooltip_vue___default.a);
     }
   }
