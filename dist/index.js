@@ -78,23 +78,14 @@ return /******/ (function(modules) { // webpackBootstrap
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return events; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
 
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.events = undefined;
-
-var _vue = __webpack_require__(13);
-
-var _vue2 = _interopRequireDefault(_vue);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var events = exports.events = new _vue2.default();
+var events = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a();
 
 /***/ }),
 /* 1 */
@@ -195,18 +186,14 @@ module.exports = Component.exports
 
 /***/ }),
 /* 4 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__bus__ = __webpack_require__(0);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _bus = __webpack_require__(0);
+
 
 var pointerSize = 6;
 var directions = {
@@ -216,7 +203,7 @@ var directions = {
   bottom: [0, -1]
 };
 
-exports.default = {
+/* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Popover',
   render: function render(createElement) {
     if (!this.visible) {
@@ -273,12 +260,12 @@ exports.default = {
     };
   },
   mounted: function mounted() {
-    _bus.events.$on(this.showEventName, this.showEventListener);
-    _bus.events.$on(this.hideEventName, this.hideEventListener);
+    __WEBPACK_IMPORTED_MODULE_0__bus__["a" /* events */].$on(this.showEventName, this.showEventListener);
+    __WEBPACK_IMPORTED_MODULE_0__bus__["a" /* events */].$on(this.hideEventName, this.hideEventListener);
   },
   beforeDestroy: function beforeDestroy() {
-    _bus.events.$off(this.showEventName, this.showEventListener);
-    _bus.events.$off(this.hideEventName, this.hideEventListener);
+    __WEBPACK_IMPORTED_MODULE_0__bus__["a" /* events */].$off(this.showEventName, this.showEventListener);
+    __WEBPACK_IMPORTED_MODULE_0__bus__["a" /* events */].$off(this.hideEventName, this.hideEventListener);
   },
 
   computed: {
@@ -302,7 +289,7 @@ exports.default = {
       var _this = this;
 
       if (this.visible) {
-        _bus.events.$emit(this.hideEventName);
+        __WEBPACK_IMPORTED_MODULE_0__bus__["a" /* events */].$emit(this.hideEventName);
         return;
       }
 
@@ -319,14 +306,16 @@ exports.default = {
           _this.visible = true;
 
           _this.$nextTick(function () {
-            var position = _this.getDrodownPosition(target, _this.$refs.dropdown, direction);
+            _this.$emit('show', event);
 
-            _this.position = {
-              left: position.left + 'px',
-              top: position.top + 'px'
-            };
+            _this.$nextTick(function () {
+              var position = _this.getDropdownPosition(target, _this.$refs.dropdown, direction);
 
-            _this.$emit('show', _extends({}, event, { position: position }));
+              _this.position = {
+                left: position.left + 'px',
+                top: position.top + 'px'
+              };
+            });
           });
         }
       });
@@ -337,12 +326,15 @@ exports.default = {
         this.$emit('hide', event);
       }
     },
-    getDrodownPosition: function getDrodownPosition(target, dropdown, direction) {
+    getDropdownPosition: function getDropdownPosition(target, dropdown, direction) {
       var trRect = target.getBoundingClientRect();
       var ddRect = dropdown.getBoundingClientRect();
 
-      var offsetLeft = target.offsetLeft,
-          offsetTop = target.offsetTop;
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+      var scrollLeft = window.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft;
+
+      var offsetLeft = trRect.left + scrollLeft;
+      var offsetTop = trRect.top + scrollTop;
 
       var shiftY = 0.5 * (ddRect.height + trRect.height);
 
@@ -363,19 +355,17 @@ exports.default = {
       };
     }
   }
-};
+});
 
 /***/ }),
 /* 5 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = {
+/* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Tooltip',
   props: {
     event: {
@@ -396,34 +386,26 @@ exports.default = {
       value: ''
     };
   }
-};
+});
 
 /***/ }),
 /* 6 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Popover_vue__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Popover_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Popover_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Tooltip_vue__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Tooltip_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Tooltip_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__bus__ = __webpack_require__(0);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var _Popover = __webpack_require__(2);
 
-var _Popover2 = _interopRequireDefault(_Popover);
 
-var _Tooltip = __webpack_require__(3);
 
-var _Tooltip2 = _interopRequireDefault(_Tooltip);
-
-var _bus = __webpack_require__(0);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var defaultPosition = 'bottom';
 
@@ -437,17 +419,17 @@ var prepareBinding = function prepareBinding(_ref) {
 
   var mods = Object.keys(modifiers);
   var name = (typeof value === 'undefined' ? 'undefined' : _typeof(value)) === 'object' && value.name ? value.name : arg;
-  var position = mods[0] || defaultPosition;
+  var position = mods[0] || value.position || defaultPosition;
 
   return { name: name, position: position, value: value };
 };
 
 var addClickEventListener = function addClickEventListener(target, params) {
   var click = function click(srcEvent) {
-    _bus.events.$emit('show:click', _extends({}, params, { target: target, srcEvent: srcEvent }));
+    __WEBPACK_IMPORTED_MODULE_2__bus__["a" /* events */].$emit('show:click', _extends({}, params, { target: target, srcEvent: srcEvent }));
 
     var handler = function handler(srcEvent) {
-      _bus.events.$emit('hide:click', _extends({}, params, { target: target, srcEvent: srcEvent }));
+      __WEBPACK_IMPORTED_MODULE_2__bus__["a" /* events */].$emit('hide:click', _extends({}, params, { target: target, srcEvent: srcEvent }));
       document.removeEventListener('click', handler);
     };
 
@@ -463,32 +445,32 @@ var addClickEventListener = function addClickEventListener(target, params) {
 };
 
 var addHoverEventListener = function addHoverEventListener(target, params) {
-  var mouseover = function mouseover(srcEvent) {
-    _bus.events.$emit('show:hover', _extends({}, params, { target: target, srcEvent: srcEvent }));
+  var mouseenter = function mouseenter(srcEvent) {
+    __WEBPACK_IMPORTED_MODULE_2__bus__["a" /* events */].$emit('show:hover', _extends({}, params, { target: target, srcEvent: srcEvent }));
   };
 
   var mouseleave = function mouseleave(srcEvent) {
-    _bus.events.$emit('hide:hover', _extends({}, params, { target: target, srcEvent: srcEvent }));
+    __WEBPACK_IMPORTED_MODULE_2__bus__["a" /* events */].$emit('hide:hover', _extends({}, params, { target: target, srcEvent: srcEvent }));
   };
 
-  target.addEventListener('mouseover', mouseover);
+  target.addEventListener('mouseenter', mouseenter);
   target.addEventListener('mouseleave', mouseleave);
 
   target.$popoverRemoveHoverHandlers = function () {
-    target.removeEventListener('mouseover', mouseover);
+    target.removeEventListener('mouseenter', mouseenter);
     target.removeEventListener('mouseleave', mouseleave);
   };
 };
 
-exports.default = {
+/* harmony default export */ __webpack_exports__["default"] = ({
   install: function install(Vue) {
     var params = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
     document.addEventListener('resize', function (event) {
-      _bus.events.$emit('hide', { srcEvent: event });
+      __WEBPACK_IMPORTED_MODULE_2__bus__["a" /* events */].$emit('hide', { srcEvent: event });
     });
 
-    Vue.component('Popover', _Popover2.default);
+    Vue.component('Popover', __WEBPACK_IMPORTED_MODULE_0__Popover_vue___default.a);
 
     Vue.directive('popover', {
       bind: function bind(target, binding) {
@@ -507,10 +489,10 @@ exports.default = {
       if (params.debug) {
         console.log('vue-js-popover | tooltip active');
       }
-      Vue.component('Tooltip', _Tooltip2.default);
+      Vue.component('Tooltip', __WEBPACK_IMPORTED_MODULE_1__Tooltip_vue___default.a);
     }
   }
-};
+});
 
 /***/ }),
 /* 7 */
