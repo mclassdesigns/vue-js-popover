@@ -107,8 +107,10 @@ var directions = {
       return;
     }
 
-    return createElement('transition', {
-      name: "show-from-bottom"
+    return createElement(Vue.options.components['Transition'], {
+      props: {
+        name: 'show-from-bottom'
+      }
     }, [createElement('div', {
       class: this.className,
       style: this.style,
