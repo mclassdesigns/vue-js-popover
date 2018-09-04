@@ -1,5 +1,6 @@
 var path = require('path')
 var webpack = require('webpack')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports = {
   entry: './src/index.js',
@@ -14,14 +15,15 @@ module.exports = {
     rules: [
       {
         test: /\.vue$/,
-        loader: 'vue-loader',
-        options: {
-          loaders: {
-            'scss': 'vue-style-loader!css-loader!sass-loader',
-            'sass': 'vue-style-loader!css-loader!sass-loader?indentedSyntax'
-          }
-        }
+        loader: 'vue-loader'
       },
+      {
+          test: /\.scss$/,
+          use: [
+            'css-loader',
+            'sass-loader'
+          ]
+        },
       {
         test: /\.js$/,
         loader: 'babel-loader',
@@ -49,6 +51,7 @@ module.exports = {
   },
   devtool: '#source-map',
   plugins: [
+    new VueLoaderPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: '"production"'
