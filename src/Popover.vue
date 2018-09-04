@@ -176,10 +176,10 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 $pointer-size: 6px;
 
-.vue-popover {
+.popover-button >>> .vue-popover {
   display: block;
   position: absolute;
   background: #fff;
