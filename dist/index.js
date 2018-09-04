@@ -107,7 +107,9 @@ var directions = {
       return;
     }
 
-    return createElement('div', {
+    return createElement('transition', {
+      name: "show-from-bottom"
+    }, [createElement('div', {
       class: this.className,
       style: this.style,
       attrs: {
@@ -119,7 +121,7 @@ var directions = {
         }
       },
       ref: 'dropdown'
-    }, this.$slots.default);
+    }, this.$slots.default)]);
   },
   props: {
     name: {

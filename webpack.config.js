@@ -18,13 +18,13 @@ module.exports = {
         loader: 'vue-loader'
       },
       {
-          test: /\.scss$/,
-          use: [
-            'style-loader',
-            'css-loader',
-            'sass-loader'
-          ]
-        },
+        test: /\.scss$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          'sass-loader'
+        ]
+      },
       {
         test: /\.js$/,
         loader: 'babel-loader',

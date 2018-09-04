@@ -17,21 +17,29 @@ export default {
     }
 
     return createElement(
-      'div',
+      'transition',
       {
-        class: this.className,
-        style: this.style,
-        attrs: {
-          'data-popover': this.name
-        },
-        on: {
-          click (event) {
-            event.stopPropagation()
-          }
-        },
-        ref: 'dropdown'
+        name: "show-from-bottom"
       },
-      this.$slots.default
+      [
+        createElement(
+          'div',
+          {
+            class: this.className,
+            style: this.style,
+            attrs: {
+              'data-popover': this.name
+            },
+            on: {
+              click (event) {
+                event.stopPropagation()
+              }
+            },
+            ref: 'dropdown'
+          },
+          this.$slots.default
+        )
+      ]
     )
   },
   props: {
