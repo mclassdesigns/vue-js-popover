@@ -5,7 +5,8 @@
   "author": "euvl <yev.vlasenko@gmail.com>",
   "private": false,
   "scripts": {
-    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
+    "dev": "cross-env NODE_ENV=production webpack --progress --hide-modules --watch"
   },
   "main": "dist/index.js",
   "repository": {
@@ -39,6 +40,5 @@
     "vue-template-compiler": "^2.5.17",
     "webpack": "3.11.0",
     "webpack-dev-server": "2.11.1"
-  },
-  "dependencies": {}
+  }
 }

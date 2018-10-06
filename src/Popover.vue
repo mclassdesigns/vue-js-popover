@@ -18,7 +18,7 @@ export default {
 
     return createElement(
       Vue.options.components['Transition'],
-        { props: { name: 'show-from-bottom' } },
+      { props: { name: 'show-from-bottom' } },
       [
         createElement(
           'div',
